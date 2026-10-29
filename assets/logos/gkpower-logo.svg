@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60">
+  <defs>
+    <linearGradient id="gkGreenGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#008938" />
+      <stop offset="100%" stop-color="#006022" />
+    </linearGradient>
+    <linearGradient id="boltGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9100" />
+      <stop offset="100%" stop-color="#D50000" />
+    </linearGradient>
+  </defs>
+  <!-- G Shape -->
+  <path d="M 40 8 C 22 8 10 20 10 32 C 10 44 22 54 40 54 C 52 54 60 48 64 42 L 50 42 C 48 45 44 47 39 47 C 28 47 21 40 21 32 C 21 24 28 15 40 15 C 47 15 52 18 55 22 L 65 14 C 59 10 50 8 40 8 Z" fill="url(#gkGreenGradDark)"/>
+  <polygon points="34,26 48,26 40,38 52,38 32,54 36,40 26,40" fill="url(#boltGradDark)"/>
+  
+  <!-- K Shape -->
+  <path d="M 68 10 L 79 10 L 79 28 L 96 10 L 111 10 L 89 31 L 112 52 L 97 52 L 79 35 L 79 52 L 68 52 Z" fill="url(#gkGreenGradDark)"/>
+
+  <!-- Text GK POWER TRANSMISSION -->
+  <text x="122" y="28" font-family="'Barlow Condensed', 'Inter', sans-serif" font-size="24" font-weight="900" fill="#111111" letter-spacing="1.5">GK POWER</text>
+  <text x="122" y="44" font-family="'Inter', sans-serif" font-size="10.5" font-weight="700" fill="#008938" letter-spacing="2.5">TRANSMISSION CO. PVT. LTD.</text>
+  <text x="122" y="54" font-family="'Inter', sans-serif" font-size="7.5" font-weight="600" fill="#666666" letter-spacing="1">EHV SUBSTATIONS &amp; TRANSMISSION LINES</text>
+</svg>
