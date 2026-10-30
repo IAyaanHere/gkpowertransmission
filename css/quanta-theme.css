@@ -2119,6 +2119,51 @@ textarea.form-control {
   color: #fff;
 }
 
+
+/* ==========================================================================
+   PROJECTS SHOW MORE / SHOW LESS ANIMATIONS & TOP 5 LOGIC
+   ========================================================================== */
+.projects-grid:not(.show-all) .project-card.project-extra {
+  display: none !important;
+}
+
+.projects-grid.show-all .project-card.project-extra {
+  display: flex !important;
+  animation: fadeInProjectCard 0.4s ease forwards;
+}
+
+@keyframes fadeInProjectCard {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.projects-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3.5rem;
+}
+
+.projects-toggle-wrap .btn {
+  min-width: 260px;
+  padding: 1.1rem 2.8rem;
+  font-size: 1.45rem;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.projects-toggle-wrap .btn:hover {
+  border-color: var(--theme-primary);
+  background: rgba(205, 10, 27, 0.12);
+  color: #fff;
+}
+
 /* ==========================================================================
    SITE FOOTER (CLEAN, ELEGANT & RESPONSIVE QUANTA REDESIGN)
    ========================================================================== */

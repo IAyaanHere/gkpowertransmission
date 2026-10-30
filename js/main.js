@@ -228,8 +228,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 7. Project Filter Tabs
+  // 7. Project Filter Tabs & Top 5 Toggle Logic
   const projectTabs = document.querySelectorAll('.project-filter-tabs .tab-btn');
+  const toggleProjectsBtn = document.getElementById('toggleProjectsBtn');
+  const projectsGrid = document.querySelector('.projects-grid');
+
+  function updateProjectToggleBtnState(isExpanded) {
+    if (!toggleProjectsBtn) return;
+    toggleProjectsBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    const btnText = toggleProjectsBtn.querySelector('.btn-text');
+    const btnSvg = toggleProjectsBtn.querySelector('svg');
+    if (isExpanded) {
+      if (btnText) btnText.textContent = 'Show Top 5 Projects';
+      if (btnSvg) btnSvg.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
+    } else {
+      if (btnText) btnText.textContent = 'View All 12 Projects & Products';
+      if (btnSvg) btnSvg.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+    }
+  }
+
+  if (toggleProjectsBtn && projectsGrid) {
+    toggleProjectsBtn.addEventListener('click', () => {
+      const isExpanded = projectsGrid.classList.toggle('show-all');
+      updateProjectToggleBtnState(isExpanded);
+
+      // Re-apply current tab filter
+      const activeTab = document.querySelector('.project-filter-tabs .tab-btn.active');
+      const filter = activeTab ? (activeTab.getAttribute('data-filter') || 'all') : 'all';
+
+      projectCards.forEach(card => {
+        const cat = card.getAttribute('data-category') || '';
+        const isExtra = card.classList.contains('project-extra');
+        const matchesCategory = (filter === 'all' || cat.includes(filter));
+
+        if (!matchesCategory) {
+          card.style.display = 'none';
+        } else if (!isExpanded && isExtra && filter === 'all') {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'flex';
+        }
+      });
+
+      if (!isExpanded) {
+        const projSec = document.getElementById('projects');
+        if (projSec) {
+          projSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  }
+
   projectTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       projectTabs.forEach(t => t.classList.remove('active'));
@@ -237,12 +286,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const filter = tab.getAttribute('data-filter') || 'all';
 
+      // If user filters to a specific category, auto-expand to reveal matching cards
+      if (filter !== 'all') {
+        if (projectsGrid && !projectsGrid.classList.contains('show-all')) {
+          projectsGrid.classList.add('show-all');
+          updateProjectToggleBtnState(true);
+        }
+        if (toggleProjectsBtn) {
+          toggleProjectsBtn.style.display = 'none';
+        }
+      } else {
+        if (toggleProjectsBtn) {
+          toggleProjectsBtn.style.display = 'inline-flex';
+        }
+      }
+
+      const isExpanded = projectsGrid ? projectsGrid.classList.contains('show-all') : true;
+
       projectCards.forEach(card => {
         const cat = card.getAttribute('data-category') || '';
-        if (filter === 'all' || cat.includes(filter)) {
-          card.style.display = 'flex';
-        } else {
+        const isExtra = card.classList.contains('project-extra');
+        const matchesCategory = (filter === 'all' || cat.includes(filter));
+
+        if (!matchesCategory) {
           card.style.display = 'none';
+        } else if (!isExpanded && isExtra && filter === 'all') {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'flex';
+          setTimeout(() => { card.style.opacity = '1'; }, 30);
         }
       });
     });
