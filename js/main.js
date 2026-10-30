@@ -88,9 +88,57 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(counter => counterObserver.observe(counter));
   }
 
-  // 5. Client Tabs Filter
+  // 5. Client Toggle & Filter Logic (Top 6 Initial + Expand All)
   const clientTabs = document.querySelectorAll('.client-filter-tabs .tab-btn');
   const clientCards = document.querySelectorAll('.client-card');
+  const toggleClientsBtn = document.getElementById('toggleClientsBtn');
+  const clientsGrid = document.querySelector('.clients-grid');
+
+  function updateToggleBtnState(isExpanded) {
+    if (!toggleClientsBtn) return;
+    toggleClientsBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    const btnText = toggleClientsBtn.querySelector('.btn-text');
+    const btnSvg = toggleClientsBtn.querySelector('svg');
+    if (isExpanded) {
+      if (btnText) btnText.textContent = 'Show Top 6 Clients';
+      if (btnSvg) btnSvg.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
+    } else {
+      if (btnText) btnText.textContent = 'View All 14 Clients & Partners';
+      if (btnSvg) btnSvg.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+    }
+  }
+
+  if (toggleClientsBtn && clientsGrid) {
+    toggleClientsBtn.addEventListener('click', () => {
+      const isExpanded = clientsGrid.classList.toggle('show-all');
+      updateToggleBtnState(isExpanded);
+
+      // Re-apply current tab filter
+      const activeTab = document.querySelector('.client-filter-tabs .tab-btn.active');
+      const filter = activeTab ? (activeTab.getAttribute('data-filter') || 'all') : 'all';
+
+      clientCards.forEach(card => {
+        const cat = card.getAttribute('data-category') || '';
+        const isExtra = card.classList.contains('client-extra');
+        const matchesCategory = (filter === 'all' || cat.includes(filter));
+
+        if (!matchesCategory) {
+          card.style.display = 'none';
+        } else if (!isExpanded && isExtra && filter === 'all') {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'flex';
+        }
+      });
+
+      if (!isExpanded) {
+        const clientsSec = document.getElementById('clients');
+        if (clientsSec) {
+          clientsSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  }
 
   clientTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -99,13 +147,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const filter = tab.getAttribute('data-filter') || 'all';
 
+      // If user filters to a specific category, automatically expand to reveal matching cards
+      if (filter !== 'all') {
+        if (clientsGrid && !clientsGrid.classList.contains('show-all')) {
+          clientsGrid.classList.add('show-all');
+          updateToggleBtnState(true);
+        }
+        if (toggleClientsBtn) {
+          toggleClientsBtn.style.display = 'none'; // Hide toggle while specific category tab is active
+        }
+      } else {
+        if (toggleClientsBtn) {
+          toggleClientsBtn.style.display = 'inline-flex';
+        }
+      }
+
+      const isExpanded = clientsGrid ? clientsGrid.classList.contains('show-all') : true;
+
       clientCards.forEach(card => {
         const cat = card.getAttribute('data-category') || '';
-        if (filter === 'all' || cat.includes(filter)) {
-          card.style.display = 'flex';
-          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 50);
-        } else {
+        const isExtra = card.classList.contains('client-extra');
+        const matchesCategory = (filter === 'all' || cat.includes(filter));
+
+        if (!matchesCategory) {
           card.style.display = 'none';
+        } else if (!isExpanded && isExtra && filter === 'all') {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'flex';
+          setTimeout(() => { card.style.opacity = '1'; }, 30);
         }
       });
     });
