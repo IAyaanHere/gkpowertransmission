@@ -374,4 +374,34 @@ document.addEventListener('DOMContentLoaded', () => {
       behavior: 'smooth'
     });
   });
+
+  // 10. Light / Dark Mode System (Default: White / Light Mode)
+  const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+
+  function getActiveTheme() {
+    return document.documentElement.getAttribute('data-theme') || localStorage.getItem('gkpower_theme') || 'light';
+  }
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('gkpower_theme', theme);
+
+    themeToggleBtns.forEach(btn => {
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+      btn.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    });
+  }
+
+  // Sync initial state
+  const currentTheme = getActiveTheme();
+  setTheme(currentTheme);
+
+  themeToggleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const targetTheme = current === 'dark' ? 'light' : 'dark';
+      setTheme(targetTheme);
+    });
+  });
 });

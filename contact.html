@@ -1,8 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Theme Initialization: Default White / Light Mode -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('gkpower_theme');
+      var theme = saved ? saved : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <title>Contact Us - GK Power Transmission Company Pvt. Ltd</title>
   <meta name="description" content="Get in touch with GK Power Transmission Company Pvt. Ltd Headquarters in Civil Lines, Nagpur. Call +91 8855847066 or email agm@gkpower.co.in for tenders, turnkey switchyards, transformer explosion prevention, and overhauling.">
   <link rel="icon" type="image/jpeg" href="assets/logos/gkpower-logo.jpg">
@@ -35,8 +43,9 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container navbar-content">
-      <a href="index.html" class="site-logo">
-        <img src="assets/logos/gkpower-logo-white.svg" alt="GK Power Logo" height="46">
+      <a href="index.html" class="site-logo" title="GK Power Transmission Company Pvt. Ltd">
+        <img src="assets/logos/gkpower-logo.svg" alt="GK Power Transmission Logo" class="logo-light" height="42">
+        <img src="assets/logos/gkpower-logo-white.svg" alt="GK Power Transmission Logo" class="logo-dark" height="42">
       </a>
 
       <ul class="nav-menu">
@@ -49,6 +58,23 @@
       </ul>
 
       <div class="nav-actions">
+        <!-- Theme Toggle Button (Light / Dark) -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         <a href="https://wa.me/918855847066?text=Hello%20GK%20Power%20Transmission%20Company%20Pvt.%20Ltd%2C%20I%20would%20like%20to%20enquire%20about%20your%20services%20and%20products." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-nav-quote" title="Request Quote on WhatsApp">
           <span class="btn-text-full">Request Quote</span>
           <span class="btn-text-short">Quote</span>
@@ -78,13 +104,23 @@
       <li><a href="index.html#projects">Completed Works</a></li>
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
+    <!-- Drawer Theme Switcher -->
+    <div class="drawer-theme-toggle-wrap">
+      <span class="drawer-theme-text">Mode</span>
+      <button class="theme-toggle drawer-theme-btn" aria-label="Toggle theme">
+        <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <span class="theme-mode-label"></span>
+      </button>
+    </div>
+
     <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
       <a href="https://wa.me/918855847066?text=Hello%20GK%20Power%20Transmission%20Company%20Pvt.%20Ltd%2C%20I%20would%20like%20to%20enquire%20about%20your%20services%20and%20products." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Enquire on WhatsApp</a>
     </div>
   </aside>
 
   <!-- CONTACT HERO (QUANTA STYLE) -->
-  <section class="section topo topo-bottom" style="background-color: #121010; padding-top: 8rem; padding-bottom: 6rem;">
+  <section class="section topo topo-bottom" style="padding-top: 8rem; padding-bottom: 6rem;">
     <div class="container">
       <div class="section-pretitle">Connect With Our Technical Management</div>
       <h1 class="h1" style="color: #fff; margin-bottom: 2rem;">
@@ -97,7 +133,7 @@
   </section>
 
   <!-- CONTACT FORM & HEADQUARTERS SPLIT -->
-  <main class="section topo topo-right" style="background-color: #161414;">
+  <main class="section topo topo-right">
     <div class="container">
       <div class="contact-split">
         <!-- Left: Headquarters Info -->
@@ -198,7 +234,7 @@
 
             <div class="form-group">
               <label class="form-label">Requirement Domain</label>
-              <select class="form-control" style="background:#282424; color:#fff;">
+              <select class="form-control" >
                 <option value="turnkey-switchyard">Turnkey EHV Switchyard (132KV / 220KV / 400KV)</option>
                 <option value="transformer-explosion">Transformer Explosion &amp; Fire Prevention (NIFPS)</option>
                 <option value="transformer-supply">Power &amp; Distribution Transformers</option>
@@ -225,7 +261,7 @@
       </div>
 
       <!-- MAP LOCATION CARD (NAGPUR) -->
-      <div style="margin-top: 6rem; background: #201d1d; border: 1px solid rgba(255,255,255,0.1); padding: 2rem;">
+      <div class="contact-map-wrapper">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
           <div>
             <h4 style="font-size: 2.2rem; color: #fff; font-family: var(--highlight-font);">NAGPUR HEADQUARTERS LOCATION</h4>
@@ -236,7 +272,7 @@
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
         </div>
-        <div style="width: 100%; height: 380px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; background: #151313;">
+        <div class="contact-map-frame">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14884.341498877545!2d79.0664421!3d21.1489069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0f2095f36e3%3A0xb3514a4c10ec3f30!2sCivil%20Lines%2C%20Nagpur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
             width="100%" 
