@@ -4,15 +4,23 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Sticky Navbar
+  // 1. Locked / Sticky Header System (Always pinned to top on scroll)
+  const headerWrapper = document.querySelector('.site-header-wrapper');
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+
+  function handleHeaderScroll() {
+    const isScrolled = window.scrollY > 20;
+    if (isScrolled) {
+      headerWrapper?.classList.add('scrolled');
       navbar?.classList.add('scrolled');
     } else {
+      headerWrapper?.classList.remove('scrolled');
       navbar?.classList.remove('scrolled');
     }
-  });
+  }
+
+  window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+  handleHeaderScroll();
 
   // 2. Mobile Drawer Navigation
   const menuToggle = document.querySelector('.menu-toggle');
