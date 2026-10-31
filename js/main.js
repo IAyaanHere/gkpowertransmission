@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 8. Contact Form Handling -> Direct WhatsApp pre-typed integration to +918855847066
+  // 8. Contact Form Handling -> Direct WhatsApp pre-typed integration to +918806243090
   const contactForms = document.querySelectorAll('#contact-form, form');
   const toast = document.querySelector('.toast');
 
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (req) waText += `\nRequirement: ${req}`;
       if (msg) waText += `\nScope/Details: ${msg}`;
 
-      const waUrl = `https://wa.me/918855847066?text=${encodeURIComponent(waText)}`;
+      const waUrl = `https://wa.me/918806243090?text=${encodeURIComponent(waText)}`;
 
       if (toast) {
         toast.classList.add('show');

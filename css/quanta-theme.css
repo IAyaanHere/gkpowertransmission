@@ -751,7 +751,8 @@ h6, .h6 {
     min-height: 36px;
     letter-spacing: 0.02em;
     gap: 0.5rem;
-    border-radius: 6px; 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    border-radius: 6px;
+    clip-path: none;
   }
   .navbar .btn-nav-quote svg,
   .navbar .nav-actions .btn-primary svg {
@@ -795,7 +796,8 @@ h6, .h6 {
     min-height: 33px;
     letter-spacing: 0.02em;
     gap: 0.4rem;
-    border-radius: 6px; 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    border-radius: 6px;
+    clip-path: none;
   }
   .navbar .btn-nav-quote svg,
   .navbar .nav-actions .btn-primary svg {
